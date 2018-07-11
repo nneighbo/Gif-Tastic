@@ -1,0 +1,18 @@
+.btn {
+    background-color: lightcoral;
+    color: white;
+    padding: 10px;
+    margin-right: 15px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 125px;
+}
+
+#add-gif {
+    margin-bottom: 20px;
+    margin-top: 15px;
+}
+
+#gif-input {
+    margin-top: 10px;
+}

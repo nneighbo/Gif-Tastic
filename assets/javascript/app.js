@@ -28,11 +28,18 @@ $("#add-gif").on("click", function(event) {
     }).then(function (response) {
       $("#gif-view").empty();
       for (i = 0; i < response.data.length; i++){
-      $("#gif-view").append("<h6>" + "Rated: " + response.data[i].rating.toUpperCase() + "</h6>");
-      var newImage = $("<img>").attr("src", response.data[i].url);
-      console.log(response.data[i].url);
-      $("#gif-view").append(newImage);
+      var gifDiv = $("<div class='col-lg-3'>");
+      var p =("<p>" + "Rated: " + response.data[i].rating.toUpperCase() + "</p>");
+      var newImage = $("<img>");
+      newImage.attr("src", response.data[i].images.fixed_height.url);
+      newImage.attr("alt", "gif");
+      $(this).attr("src", $(this).attr("data-still"));
+      $(this).attr("data-state", "still");
+      gifDiv.prepend(p);
+      gifDiv.prepend(newImage);
+      $("#gif-view").prepend(gifDiv);
       }
+      console.log(this);
     });
   });
   
