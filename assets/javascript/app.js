@@ -28,18 +28,32 @@ $("#add-gif").on("click", function(event) {
     }).then(function (response) {
       $("#gif-view").empty();
       for (i = 0; i < response.data.length; i++){
-      var gifDiv = $("<div class='col-lg-3'>");
-      var p =("<p>" + "Rated: " + response.data[i].rating.toUpperCase() + "</p>");
-      var newImage = $("<img>");
-      newImage.attr("src", response.data[i].images.fixed_height.url);
-      newImage.attr("alt", "gif");
-      $(this).attr("src", $(this).attr("data-still"));
-      $(this).attr("data-state", "still");
-      gifDiv.prepend(p);
-      gifDiv.prepend(newImage);
-      $("#gif-view").prepend(gifDiv);
+        var gifDiv = $("<div class='col-lg-3'>");
+        var p =("<p>" + "Rated: " + response.data[i].rating.toUpperCase() + "</p>");
+        var newImage = $("<img>");
+        var movingImage = response.data[i].images.fixed_height.url;
+        var stillImage = response.data[i].images.fixed_height_still.url;
+        newImage.attr("src", stillImage);
+        newImage.attr("alt", "gif");
+        newImage.attr("data-animate", movingImage);
+        newImage.attr("data-still", stillImage);
+        gifDiv.prepend(p);
+        gifDiv.prepend(newImage);
+        $("#gif-view").prepend(gifDiv);
       }
-      console.log(this);
+
+      $(newImage).on("click", function(){
+        let state = $(this).attr("data-state");
+        if(state === "still"){
+          $(this).attr("src", $(this).attr("data-animate"))
+          $(this).attr("data-state", "animate")
+          console.log(this)
+        } else {
+          $(this).attr("src", $(this).attr("data-still"))
+          $(this).attr("data-state", "still");
+        }
+      });
+
     });
   });
   
