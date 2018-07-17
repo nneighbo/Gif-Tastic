@@ -21,7 +21,7 @@ $("#add-gif").on("click", function(event) {
 
   $(document).on("click", ".btn", function(){
     gif = $(this).text();
-    queryURL = "http://api.giphy.com/v1/gifs/search?q=" + gif + "&limit=10&api_key=jJsOFqs9lXGOp4AI08ehiRofan7u25g7";
+    queryURL = "https://api.giphy.com/v1/gifs/search?q=" + gif + "&limit=10&api_key=jJsOFqs9lXGOp4AI08ehiRofan7u25g7";
     $.ajax({
       url: queryURL,
       method: "GET"
